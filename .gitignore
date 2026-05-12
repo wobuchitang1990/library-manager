@@ -3,3 +3,7 @@ server.key
 server.crt
 data.json
 *.log
+config.json
+generate-icons.js
+*.log
+server.log

@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: library-manager
+    runtime: node
+    region: singapore
+    plan: free
+    buildCommand: ""
+    startCommand: node server.js
+    envVars:
+      - key: BAIDU_OCR_API_KEY
+        value: 7aK8IjSuXISZdx2UKh5i0Vb2
+      - key: BAIDU_OCR_SECRET_KEY
+        value: ruEEInAouVMZaFBDrxPKYcgxJO1bGVvN
