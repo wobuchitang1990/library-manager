@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#FFF8E7">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="小小图书馆">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <title>小小图书馆</title>
+</head>
+<body>
+  <!-- 登录遮罩 -->
+  <div id="login-overlay" style="display:none;position:fixed;inset:0;background:var(--color-paper);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:20px;overflow-y:auto">
+    <!-- 登录表单 -->
+    <div id="login-form" style="text-align:center;max-width:320px;width:100%">
+      <div style="font-size:3rem;margin-bottom:16px">📚</div>
+      <h2 style="font-family:var(--font-crayon);margin-bottom:8px">小小图书馆</h2>
+      <p style="color:var(--color-text-light);font-size:0.85rem;margin-bottom:24px">请输入密码进入</p>
+      <input type="password" id="login-password" placeholder="输入密码" class="form-input" style="text-align:center;font-size:1.2rem;margin-bottom:12px" autocomplete="off" onkeydown="if(event.key==='Enter')document.getElementById('login-btn').click()">
+      <button class="btn btn-primary btn-block" id="login-btn" style="font-size:1rem" onclick="doLogin()">进入</button>
+      <div id="login-error" style="color:var(--color-crayon-red);font-size:0.85rem;margin-top:10px"></div>
+      <div style="margin-top:20px">
+        <span id="show-change-pw" style="font-size:0.8rem;color:var(--color-crayon-blue);text-decoration:underline;cursor:pointer" onclick="showChangePwForm()">修改密码</span>
+      </div>
+    </div>
+    <!-- 修改密码表单 -->
+    <div id="change-pw-form" style="display:none;text-align:center;max-width:320px;width:100%">
+      <div style="font-size:2rem;margin-bottom:16px">🔑</div>
+      <h3 style="font-family:var(--font-crayon);margin-bottom:16px">修改密码</h3>
+      <input type="password" id="cp-old-pw" placeholder="当前密码" class="form-input" style="text-align:center;margin-bottom:10px" autocomplete="off">
+      <input type="password" id="cp-new-pw" placeholder="新密码" class="form-input" style="text-align:center;margin-bottom:10px" autocomplete="off">
+      <button class="btn btn-warning btn-block" id="change-pw-btn" style="font-size:1rem;margin-bottom:8px" onclick="doChangePassword()">确认修改</button>
+      <button class="btn btn-outline btn-block btn-sm" id="cancel-change-pw" onclick="hideChangePwForm()">返回登录</button>
+      <div id="cp-error" style="color:var(--color-crayon-red);font-size:0.85rem;margin-top:8px"></div>
+      <div id="cp-success" style="color:var(--color-crayon-green);font-size:0.85rem;margin-top:8px"></div>
+    </div>
+  </div>
+
+  <header id="app-header">
+    <h1 id="header-title">小小图书馆</h1>
+    <span id="header-subtitle">我们的小小图书馆</span>
+  </header>
+
+  <main id="main-content">
+    <!-- 动态渲染 -->
+  </main>
+
+  <nav id="tab-bar">
+    <button class="tab-btn active" data-view="home">
+      <span class="tab-icon">🏠</span>
+      <span class="tab-label">首页</span>
+    </button>
+    <button class="tab-btn" data-view="browse">
+      <span class="tab-icon">🔍</span>
+      <span class="tab-label">浏览</span>
+    </button>
+    <button class="tab-btn" data-view="borrow">
+      <span class="tab-icon">📖</span>
+      <span class="tab-label">借阅</span>
+    </button>
+    <button class="tab-btn" data-view="return">
+      <span class="tab-icon">📚</span>
+      <span class="tab-label">归还</span>
+    </button>
+  </nav>
+
+  <button id="fab-add" title="添加书籍">+</button>
+
+  <div id="toast-container"></div>
+
+  <script src="js/vendor/html5-qrcode.min.js"></script>
+  <script src="js/vendor/quagga.min.js"></script>
+  <script src="js/vendor/tesseract.min.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ocr.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

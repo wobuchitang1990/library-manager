@@ -1,0 +1,13 @@
+{
+  "name": "library-manager",
+  "version": "1.0.0",
+  "description": "小小图书馆 - 图书管理软件",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=16"
+  }
+}
